@@ -26,6 +26,7 @@ void PWMDriver::init() {
 // ########
 
 /* PS2 Controller */
+PS2_Controller PS2_Controller::INSTANCE;
 void PS2_Controller::init() {
   Serial.print(F("Initializing PS2 controller..."));
 
@@ -49,6 +50,10 @@ void PS2_Controller::init() {
   }
 
   Serial.println(F("done."));
+}
+
+PS2X gamepad() {
+  return PS2_Controller::INSTANCE.ps2;
 }
 
 /* DC Motor */

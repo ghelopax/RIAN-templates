@@ -20,6 +20,8 @@ struct PS2_Controller {
   void init();
 };
 
+PS2X gamepad();
+
 struct DCMotor {
 private:
   uint8_t channelA, channelB;
