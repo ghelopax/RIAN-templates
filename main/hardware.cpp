@@ -3,7 +3,7 @@
 // ##########
 // PWM DRIVER
 // ##########
-Adafruit_PWMServoDriver PWMDriver::pwm;
+PWMDriver PWMDriver::INSTANCE;
 PWMDriver::PWMDriver() {
   pwm = Adafruit_PWMServoDriver();
 }
@@ -62,18 +62,8 @@ void DCMotor::control(int16_t speed) {
   if (abs(speed) < SPD_DEAD) speed = 0;
   if (reverse) speed = -speed;
 
-  PWMDriver::pwm.setPWM(channelA, 0, ((speed > 0) ? speed : 0));
-  PWMDriver::pwm.setPWM(channelB, 0, ((speed < 0) ? (-speed) : 0));
-
-#ifdef DEBUG_SETPWM
-  Serial.print(channelA);
-  Serial.print(": ");
-  Serial.print(pwm.getPWM(channelA, true));
-  SPC;
-  Serial.print(channelB);
-  Serial.print(": ");
-  Serial.println(pwm.getPWM(channelB, true));
-#endif
+  PWMDriver::INSTANCE.pwm.setPWM(channelA, 0, ((speed > 0) ? speed : 0));
+  PWMDriver::INSTANCE.pwm.setPWM(channelB, 0, ((speed < 0) ? (-speed) : 0));
 }
 
 // rel_speed = R[-1...1]
@@ -86,7 +76,7 @@ Servo::Servo(uint8_t _channel)
   : channel(_channel) {}
 
 void Servo::control(int16_t position) {
-  PWMDriver::pwm.writeMicroseconds(channel, position);
+  PWMDriver::INSTANCE.pwm.writeMicroseconds(channel, position);
 }
 
 // rel_pos = R[0...1]
@@ -99,7 +89,7 @@ CRServo::CRServo(uint8_t _channel)
   : channel(_channel) {}
 
 void CRServo::control(int16_t speed) {
-  PWMDriver::pwm.writeMicroseconds(channel, speed);
+  PWMDriver::INSTANCE.pwm.writeMicroseconds(channel, speed);
 }
 
 // rel_speed = R[-1...1]

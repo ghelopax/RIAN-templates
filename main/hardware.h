@@ -8,12 +8,14 @@
 #include <PS2X_lib.h>
 
 struct PWMDriver {
-  static Adafruit_PWMServoDriver pwm;
+  static PWMDriver INSTANCE;
+  Adafruit_PWMServoDriver pwm;
   PWMDriver();
   void init();
 };
 
 struct PS2_Controller {
+  static PS2_Controller INSTANCE;
   PS2X ps2;
   void init();
 };
