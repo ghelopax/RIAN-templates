@@ -22,8 +22,8 @@ void MecanumDrivetrain::update(uint8_t stra, uint8_t forw, uint8_t rota) {
   float x = fMAP(stra, 0, 255, -1.0, 1.0);
   float y = fMAP(forw, 0, 255, 1.0, -1.0);
   float r = fMAP(rota, 0, 255, 1.0, -1.0);
-  float d = max(abs(x) + abs(y) + abs(r), 1.0);
-
+  float d = max(fabs(x) + fabs(y) + fabs(r), 1.0);
+  
   float lf = (+x +y -r) / d;
   float rb = (+x +y +r) / d;
   float lb = (-x +y -r) / d;
