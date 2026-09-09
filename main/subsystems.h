@@ -4,12 +4,12 @@
 
 struct MecanumDrivetrain {
 private:
-  DCMotor leftfront, leftback, rightfront, rightback;
+  DCMotor leftfront, rightback, leftback, rightfront;
 
 public:
   static MecanumDrivetrain INSTANCE;
   MecanumDrivetrain();
-  void test();
+  void test(float rel_speed = 1.0);
   void update(uint8_t stra, uint8_t forw, uint8_t rota);
 };
 

@@ -20,7 +20,7 @@ struct PS2_Controller {
   void init();
 };
 
-PS2X gamepad();
+PS2X& gamepad();
 
 struct DCMotor {
 private:

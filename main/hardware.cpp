@@ -12,7 +12,7 @@ void PWMDriver::init() {
   Serial.print(F("Initializing PCA9685..."));
 
   // PWM Init
-  pwm.begin();
+  if (!pwm.begin()) Serial.print(F("failed."));
   pwm.setOscillatorFrequency(27000000);
   pwm.setPWMFreq(50);
   // Wire Init
@@ -52,7 +52,7 @@ void PS2_Controller::init() {
   Serial.println(F("done."));
 }
 
-PS2X gamepad() {
+PS2X& gamepad() {
   return PS2_Controller::INSTANCE.ps2;
 }
 
