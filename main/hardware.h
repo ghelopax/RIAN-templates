@@ -1,54 +1,58 @@
-#pragma once
+/*
+ /\_/\  /\_/\  /\_/\  /\_/\
+( o.o )( o.o )( o.o )( o.o )
+ > ^ <  > ^ <  > ^ <  > ^ <
+ /\_/\                /\_/\
+( o.o )   ghelopax   ( o.o )
+ > ^ <                > ^ <
+ /\_/\  /\_/\  /\_/\  /\_/\
+( o.o )( o.o )( o.o )( o.o )
+ > ^ <  > ^ <  > ^ <  > ^ <
+*/
 
 #include "config.h"
 
-#include <Arduino.h>
-#include <Wire.h>
-#include <Adafruit_PWMServoDriver.h>
-#include <PS2X_lib.h>
-
 struct PWMDriver {
-  static PWMDriver INSTANCE;
   Adafruit_PWMServoDriver pwm;
   PWMDriver();
-  void init();
+  bool init();
 };
 
 struct PS2_Controller {
-  static PS2_Controller INSTANCE;
   PS2X ps2;
   void init();
 };
 
-PS2X& gamepad();
-
 struct DCMotor {
 private:
+  Adafruit_PWMServoDriver &pwm;
   uint8_t channelA, channelB;
   bool reverse;
 
 public:
-  DCMotor(uint8_t _channelA, uint8_t _channelB, bool _reverse = false);
-  void control(int16_t speed);
-  void relControl(float rel_speed);
+  DCMotor(Adafruit_PWMServoDriver &_pwm, uint8_t _channelA, uint8_t _channelB, bool _reverse = false);
+  void control(int16_t power);
+  void relControl(float rel_power);
 };
 
 struct Servo {
 private:
+  Adafruit_PWMServoDriver &pwm;
   uint8_t channel;
 
 public:
-  Servo(uint8_t _channel);
+  Servo(Adafruit_PWMServoDriver &_pwm, uint8_t _channel);
   void control(int16_t position);
   void relControl(float rel_pos);
 };
 
 struct CRServo {
 private:
+  Adafruit_PWMServoDriver &pwm;
   uint8_t channel;
 
 public:
-  CRServo(uint8_t _channel);
+  CRServo(Adafruit_PWMServoDriver &_pwm, uint8_t _channel);
   void control(int16_t speed);
   void relControl(float rel_speed);
 };
