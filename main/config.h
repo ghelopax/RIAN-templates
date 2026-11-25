@@ -10,9 +10,7 @@
  > ^ <  > ^ <  > ^ <  > ^ <
 */
 
-#include <Wire.h>
-#include <Adafruit_PWMServoDriver.h>
-#include <PS2X_lib.h>
+#pragma once
 
 // #####
 // MACRO

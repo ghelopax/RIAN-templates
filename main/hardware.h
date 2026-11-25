@@ -12,6 +12,10 @@
 
 #include "config.h"
 
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <PS2X_lib.h>
+
 struct PWMDriver {
   Adafruit_PWMServoDriver pwm;
   PWMDriver();
