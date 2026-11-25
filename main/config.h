@@ -53,10 +53,10 @@
 #define OT_S             14
 
 /* PS2 pins */
-#define PS2_DAT          13
-#define PS2_CMD          11
-#define PS2_ATT          10
-#define PS2_CLK          12
+#define PS2_DAT          19
+#define PS2_CMD          23
+#define PS2_ATT          5
+#define PS2_CLK          18
 
 
 
